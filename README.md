@@ -68,7 +68,7 @@ classDef embedding fill:#f64640;
 The model is fed with a sequence "the quick brown fox" and is outputing the probabilities of all the words of the vocabulary.
 The model is composed by :
 - embedding the 4 tokens in vectors of length 256
-- attention layer to output one vector of length 256
+- transformer layer to output one vector of length 256
 - linear layer to output one vector of length 6406 (the size of the vocabulary)
 - softmax to compute the probabilities of each word of the vocabulary to be the next one 
 
