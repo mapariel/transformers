@@ -17,7 +17,7 @@ def generate_text(
     Generates a text, inferred from a starting sequence by a transformer model
 
     Args:
-        model:
+        model: The deep neural model based on self attention and transformer layers
         vocabulary: List of words corresponding to the indices used bt the model
         start: Start text fed to the model. A list of words separated by a space
         length: The minimum number of words output by the inference
