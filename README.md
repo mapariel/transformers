@@ -84,7 +84,7 @@ With this model, the output of the transformer layer does not change when the se
 
 ## Multihead
 
-To improve the accuracy of the model, four heads are used. Which means that four parallely transformers layers are used, taking as inputs the same embeddings, and that the results of these layers (four vectors of length 256) are concatenated before the last linear layer. 
+To improve the accuracy of the model, four heads are used. It means that four transformers layers are used parallelly, taking as inputs the same embeddings, and that the results of these layers (four vectors of length 256) are concatenated before the last linear layer. 
 
 
 [^1]: Klabunde R. Daniel Jurafsky/James H. Martin, Speech and Language Processing. Zeitschrift für Sprachwissenschaft. 2002;21(1):134–5.  
