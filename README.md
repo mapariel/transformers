@@ -53,7 +53,7 @@ $$k_1\cdot q_4  \qquad k_2 \cdot q_4 \qquad k_3 \cdot q_4  \qquad k_4 \cdot q_4$
 4. Computation of the softmax of those four numbers, the results are probabilities $p_1$, $p_2$, $p_3$, and $p_4$ and sum up to 1.
 5. The output of the attention layer is the weighted sum of the vectors $v_i$
 $$y_4=p_1 \cdot v_1 + p_2 \cdot v_2 + p_3 \cdot v_3 + p_4 \cdot v_4$$
-6. The transfomer layer contains attention layer, followed by a normalization layer, a linear layer, and another normalization layer. There are two shortcutsaround the attention and the linear layers.
+6. The transfomer layer contains attention layer, followed by a normalization layer, a linear layer, and another normalization layer. There are two shortcuts around the attention and the linear layers.
 ```mermaid
 flowchart TB;
 subgraph transformer layer;
