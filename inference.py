@@ -8,7 +8,7 @@ from utils import vectorize
 
 
 def generate_text(
-        model : torch.Module,
+        model : torch.Tensor,
         vocabulary: List[str],
         start: str,
         length: int = 30,
