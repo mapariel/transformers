@@ -1,6 +1,6 @@
 # Language model with transformers
 
-This project is an attempt of implementing Transformers Deep Neural architecture where The neural network is learning a language model based of the text of a book. Once trained, the network is able to find the a probable word than can continue the sentence. You can see an example, trained with "Pride and Prejudice" by Jane Austen, at http://mapariel.asus.com/language .
+This project is an attempt of implementing Transformers Deep Neural architecture where The neural network is learning a language model based of the text of a book. Once trained, the network is able to find the a probable word than can continue the sentence. You can see an example, trained with "Pride and Prejudice" by Jane Austen, at http://mapariel.asus.com/language . This text contains 6404 different words.
 
 The dimensions of the embeddings is 256 by default, and the transformer layer has 4 heads.
 
@@ -25,7 +25,7 @@ flowchart TB;
     classDef embedding fill:#f64640;
 ```
 
-## Attention Layer
+## Self attention and transformer layers
 
 2. Three square matrices $K$, $Q$ and $V$, with 256 rows and columns,  transform the embeddings into keys, queries and values.
 $$K \times x_i = k_i ,  Q \times x_i = q_i ,  \text{ and } V \times x_i = v_i$$ 
@@ -61,6 +61,22 @@ e-->g-->h("Normalize")-->i["t4"]:::embedding;
 end;
 classDef embedding fill:#f64640;
 ```
+
+## The language model
+The model is fed with a sequence "the quick brown fox" and is outputing the probabilities of all the words of the vocabulary.
+The model is composed by :
+- embedding the 4 tokens in vectors of length 256
+- attention layer to output one vector of length 256
+- linear layer to output one vector of length 6406 (the size of the vocabulary)
+- softmax to compute the probabilities of each word of the vocabulary to be the next one 
+
+## Training
+
+For the training, the cross entropy loss is computed between the output probabilities and the class of the next token "jumps". The text is divided in sequences of 51 consecutive tokens. And each token of the sequence (except the last one), is fed to the network with the previous tokens, the target being the next word.  The computation of the keys queries dot products is done in parallel $(K \times X)^T \cdot (Q\times X) $, and masking the result matrix coefficients by $-\infyt$ when $i$, index of the key, is bigger than $j$ the index of the query.
+
+## Positional encoding
+
+With this model, the output of the transformer layer does not change when the sequence of tokens are scrambled. Meaning that "the lion is eating" and "is the lion eating" will give the same probability for the next token. In that case, the second sequence would be probably followed by the token question mark "?" whilst the former has very little chance to be followed by the same mark. For that reason, positional encoding is needed. This can be done in many ways, the solution here is the one from https://pytorch.org/tutorials/beginner/transformer_tutorial.html inspired by the original paper *Attention Is All You Need*.
 
 
 
