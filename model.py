@@ -13,7 +13,7 @@ class PositionalEncoding(nn.Module):
         pe = torch.zeros(1, 1, max_len, n_features)
         pe[0, 0, :, 0::2] = torch.sin(position * div_term)
         pe[0, 0, :, 1::2] = torch.cos(position * div_term)
-        self.pe = pe
+        self.register_buffer('pe', pe)
 
     def forward(self, x):
         """
@@ -68,6 +68,8 @@ class Attention(nn.Module):
         weights = torch.matmul(queries, keys)
 
         mask = torch.triu(torch.ones(n_sequence, n_sequence), 1).to(torch.bool)
+        mask = mask.to(weights.device)
+
         weights = weights.masked_fill_(mask, -torch.inf)
 
         weights = weights / math.sqrt(self.n_features)
