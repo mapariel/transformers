@@ -72,11 +72,19 @@ The model is composed by :
 
 ## Training
 
-For the training, the cross entropy loss is computed between the output probabilities and the class of the next token "jumps". The text is divided in sequences of 51 consecutive tokens. And each token of the sequence (except the last one), is fed to the network with the previous tokens, the target being the next word.  The computation of the keys queries dot products is done in parallel $(K \times X)^T \cdot (Q\times X) $, and masking the result matrix coefficients by $-\infyt$ when $i$, index of the key, is bigger than $j$ the index of the query.
+For the training, the cross entropy loss is computed between the output probabilities and the class of the next token "jumps". The text is divided in sequences of 51 consecutive tokens. And each token of the sequence (except the last one), is fed to the network with the previous tokens, the target being the next word.  The computation of the keys queries dot products is done in parallel $(K \times X)^T \cdot (Q\times X) $, and masking the result matrix coefficients by $-\infty$ when $i$, index of the key, is bigger than $j$ the index of the query.
+
+The learnable parameters are the coefficients of the linear layers, of the normalization layers, the embeddings, and the three matrices $K$, $Q$ and $V$ to compute the keys, queries and values.
 
 ## Positional encoding
 
-With this model, the output of the transformer layer does not change when the sequence of tokens are scrambled. Meaning that "the lion is eating" and "is the lion eating" will give the same probability for the next token. In that case, the second sequence would be probably followed by the token question mark "?" whilst the former has very little chance to be followed by the same mark. For that reason, positional encoding is needed. This can be done in many ways, the solution here is the one from https://pytorch.org/tutorials/beginner/transformer_tutorial.html inspired by the original paper *Attention Is All You Need*.
+With this model, the output of the transformer layer does not change when the sequence of tokens are scrambled. Meaning that "the lion is eating" and "is the lion eating" will give the same probability for the next token. In that case, the second sequence would be probably followed by the token question mark "?" whilst the former has very little chance to be followed by the same mark. For that reason, **positional encoding** is needed. This can be done in many ways, the solution here is the one from https://pytorch.org/tutorials/beginner/transformer_tutorial.html inspired by the original paper *Attention Is All You Need*.
+
+## Multihead
+
+To improve the accuracy of the model, four heads are used. Which means that four sets of matrices $K$, $Q$ and $V$ are used parallely. 
+
+
 
 
 
