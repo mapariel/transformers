@@ -56,7 +56,7 @@ $$y_4=p_1 \cdot v_1 + p_2 \cdot v_2 + p_3 \cdot v_3 + p_4 \cdot v_4$$
 6. The transfomer layer contains attention layer, followed by a normalization layer, a linear layer, and another normalization layer. There are two shortcutsaround the attention and the linear layers.
 ```mermaid
 flowchart TB;
-subgraph transformer;
+subgraph transformer layer;
 a["(x1,x2,x3,x4)"]:::embedding-->b("attention")-->c["y4+x4"]:::embedding
 -->d("Normalize")-->e["z4"]:::embedding-->f("Linear")-->g{"+"};
 e-->g-->h("Normalize")-->i["t4"]:::embedding;
