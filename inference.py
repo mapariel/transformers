@@ -4,11 +4,11 @@ from typing import List
 
 import torch
 
+import model
 from utils import vectorize
 
-
 def generate_text(
-        model : torch.Tensor,
+        model : model.Model,
         vocabulary: List[str],
         start: str,
         length: int = 30,
