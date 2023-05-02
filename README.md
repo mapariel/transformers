@@ -74,7 +74,7 @@ The model is composed by :
 
 ## Training
 
-For the training, the cross entropy loss is computed between the output probabilities and the class of the next token "jumps". The text is divided in sequences of 51 consecutive tokens. And each token of the sequence (except the last one), is fed to the network with the previous tokens, the target being the next word.  The computation of the keys queries dot products is done in parallel $(K \times X)^T \cdot (Q\times X) $, and masking the result matrix coefficients by $-\infty$ when $i$, index of the key, is bigger than $j$ the index of the query.
+For the training, the cross entropy loss is computed between the output probabilities and the class of the next token "jumps". The text is divided in sequences of 51 consecutive tokens. And each token of the sequence (except the last one), is fed to the network with the previous tokens, the target being the next word.  The computation of the keys queries dot products is done in parallel $(K \times X)^T \times (Q\times X) $, and masking the result matrix coefficients by $-\infty$ when $i$, index of the key, is bigger than $j$ the index of the query.
 
 The learnable parameters are the coefficients of the linear layers, of the normalization layers, the embeddings, and the three matrices $K$, $Q$ and $V$ to compute the keys, queries and values.
 
