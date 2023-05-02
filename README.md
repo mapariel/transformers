@@ -2,6 +2,8 @@
 
 This project is an attempt of implementing Transformers Deep Neural architecture where The neural network is learning a language model based of the text of a book. Once trained, the network is able to find the a probable word than can continue the sentence. You can see an example, trained with "Pride and Prejudice" by Jane Austen, at http://mapariel.asus.com/language . This text contains 6404 different words.
 
+The work is inspired by the chapter 10 of the *Speech and Language Processing* book by Dan Jurafsky and James H.Martin (the draft is available at https://web.stanford.edu/~jurafsky/slp3/). The original idea is from the paper Attention is All You Need.
+
 The dimensions of the embeddings is 256 by default, and the transformer layer has 4 heads.
 
 Here is the process for the "The quick brown fox" where the next word could be "jumps":
@@ -82,7 +84,7 @@ With this model, the output of the transformer layer does not change when the se
 
 ## Multihead
 
-To improve the accuracy of the model, four heads are used. Which means that four sets of matrices $K$, $Q$ and $V$ are used parallely. 
+To improve the accuracy of the model, four heads are used. Which means that four parallely transformers layers are used, taking as inputs the same embeddings, and that the results of these layers (four vectors of length 256) are concatenated before the last linear layer. 
 
 
 
