@@ -6,7 +6,20 @@ The dimensions of the embeddings is 256 by default, and the transformer layer ha
 
 Here is the process for the "The quick brown fox" where the next word could be "jumps":
 
+
+```mermaid
+flowchart LR;
+    the:::word-->quick:::word-->brown:::word-->fox:::word-.->jumps:::word;
+    classDef word fill:#f96;
+```
+
 1. Each of the possible word of the used language is embedded as vector of 256 float numbers. "The quick brown fox" becomes $(e_1, e_2, e_3, e_4)$ where $e_i \in \mathbb{R}^{256}$
+
+```mermaid
+flowchart LR;
+    e1:::embedding-->e2:::embedding-->e3:::embedding-->e4:::embedding-.->e5:::embedding;
+    classDef embedding fill:#f64640;
+```
 
 ## Attention Layer
 
