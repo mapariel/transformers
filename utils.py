@@ -46,5 +46,11 @@ def vectorize(tokens: List[str], vocabulary: List[str]) -> List[int]:
     Returns:
         A list of indices (integers)
     """
-    vector = [vocabulary.index(token) for token in tokens]
+    vector = []
+    for token in tokens:
+        try:
+            next_token = vocabulary.index(token)
+        except ValueError:
+            next_token = len(vocabulary)-1
+        vector.append(next_token)
     return vector
