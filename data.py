@@ -22,10 +22,11 @@ class TransformerDataset(Dataset):
 
         # Creates the vocabulary : the list of unique words used in the text.
         # Tokens <SOS> and <EOS> are put at the beginning of the dictionary
+        # A token <UNKNOWN> is added at the end
         vocabulary = list(np.unique(tokenized_text))
         vocabulary.remove('<EOS>')
         vocabulary.remove('<SOS>')
-        vocabulary = ['<SOS>', '<EOS>'] + vocabulary
+        vocabulary = ['<SOS>', '<EOS>'] + vocabulary + ['<UNKWON>']
 
         self.tokenized_text = tokenized_text
         self.vocabulary = vocabulary
